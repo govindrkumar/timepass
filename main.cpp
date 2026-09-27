@@ -145,7 +145,11 @@ int main() {
         std::cout << "gfm> ";
         std::getline(std::cin, commands);
 
-        if (commands == "hello") {
+        if (commands.empty()){
+            continue;
+        }
+
+        else if (commands == "hello") {
             std::cout << "Hi, " << UserName << "!" << std::endl;
         }
         else if (commands == "whoami") {
@@ -168,6 +172,7 @@ int main() {
         else if (commands == "calc" || commands == "calculator") {
             calculator();
         }
+        // to make directories.....
         else if (commands.length() >= 5 &&
                  commands[0] == 'm' &&
                  commands[1] == 'k' &&
@@ -176,12 +181,22 @@ int main() {
                  commands[4] == 'r') {
             mkdir(commands);
         }
+        // to play number guessing game
         else if (commands == "numgame" || commands == "ng"){
             numgame();
         }
+
+        // to clear the terminal output.....
         else if (commands == "clear"){
-            std::system("clear");
+            #ifdef _WIN32 
+                std::system("cls");
+            #else
+                std::system("clear");
+            #endif 
+            
         }
+
+        // small todo app
         else if (commands[0] == 't' &&
             commands[1] == 'a' &&
             commands[2] == 's' &&
@@ -217,6 +232,7 @@ int main() {
             }
         }
         
+        // to show the task stored 
         else if (commands[0] == 't' &&
             commands[1] == 'a' &&
             commands[2] == 's' &&
@@ -226,6 +242,47 @@ int main() {
                 std::cout << item << '\n';
             }
         }
+
+
+        else if (commands[0] == 't' &&
+            commands[1] == 'o' &&
+            commands[2] == 'u' &&
+            commands[3] == 'c' &&
+            commands[4] == 'h' &&
+            commands[5] == ' '){
+                std::string file_name;
+                for (int i=6; i < commands.length(); i++){
+                    file_name.push_back(commands[i]);
+                }
+                std::ofstream file(file_name);
+                file.close();
+
+                std::cout << "Created: " << file_name << '\n';
+            }
+        
+        else if (commands[0] == 'c' &&
+                commands[1] == 'a' &&
+                commands[2] == 't' &&
+                commands[3] == ' ') {
+
+            std::string file_name;
+
+            for (int i = 4; i < commands.length(); i++) {
+                file_name.push_back(commands[i]);
+            }
+
+            std::ifstream in(file_name);
+
+            std::string text;
+
+            while (std::getline(in, text)) {
+                std::cout << text << '\n';
+            }
+
+            in.close();
+        }
+
+        // in case if command is not present.....
         else {
             std::cout << commands << " is not available." << std::endl;
         }
