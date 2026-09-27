@@ -126,6 +126,14 @@ void numgame(){
 }
 
 int main() {
+
+    std::ifstream in("heading.txt");
+    std::string text;
+    while (std::getline(in, text)){
+        std::cout << text << '\n';
+    }
+
+
     std::cout << "Welcome to GS Shell\n";
 
     std::string UserName;
