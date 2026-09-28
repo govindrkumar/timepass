@@ -7,11 +7,12 @@
 #include <fstream>
 #include <random>
 
+
 int main(){
     double a;
     double b;
     double result = 0;
-    double stored_result;
+    double stored_result = 0;
     std::string operations;
 
     while (true){
@@ -44,7 +45,34 @@ int main(){
 
         if (decision == "exitc"){
             return 0;
-        }  else if{
+        }
+        else if (decision == "yes" || decision == "y" || decision == "Y"){
+            stored_result += result;
+            do {
+                        std::cout << "calc> Enter the operation: ";
+                        std::cin >> operations;
+
+                        // now....let's see
+                        std::cout << "calc> Enter the second number: ";
+                        std::cin >> b;
+
+                        if (operations == "+"){
+                            stored_result += b;
+                        } else if (operations == "-"){
+                            stored_result -= b;
+                        } else if (operations == "*"){
+                            stored_result *= b;
+                        } else if (operations == "/"){
+                            stored_result /= b;
+                        }
+                        std::cout << "Result: " << stored_result << std::endl;
+                        std::cout << "Continue?: ";
+                        std::cin >> decision;
+                    
+            }
+            while (decision == "yes" || decision == "y" || decision == "Y");
+        }
+        else {
             continue;
         }
     }
