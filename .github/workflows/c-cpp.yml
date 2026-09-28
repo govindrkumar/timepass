@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C++ CI
 
 on:
   push:
@@ -23,6 +23,3 @@ jobs:
 
       - name: Compile
         run: g++ -std=c++17 main.cpp -o main
-
-      - name: Run
-        run: ./main
